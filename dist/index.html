@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.3">
+<title>Pet Adoption Center Exploratory Data Analysis | Pet Adoption Center Analysis</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="preload" as="style" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.dcdbf18e.css">
+<link rel="stylesheet" type="text/css" href="./_observablehq/stdlib/inputs.ea9fd553.css">
+<link rel="modulepreload" href="./_observablehq/client.2ebf0c42.js">
+<link rel="modulepreload" href="./_observablehq/runtime.e080113b.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.73a8ec5a.js">
+<link rel="modulepreload" href="./_npm/d3@7.9.0/e780feca.js">
+<link rel="modulepreload" href="./_npm/htl@0.3.1/72f4716c.js">
+<link rel="modulepreload" href="./_observablehq/stdlib/inputs.4ef1d259.js">
+<link rel="modulepreload" href="./_npm/@observablehq/plot@0.6.17/d761ef9b.js">
+<link rel="modulepreload" href="./_npm/d3-dsv@3.0.1/9cffc2bd.js">
+<link rel="modulepreload" href="./_npm/isoformat@0.2.1/18cbf477.js">
+<link rel="modulepreload" href="./_npm/d3-array@3.2.4/e93ca09f.js">
+<link rel="modulepreload" href="./_npm/d3-axis@3.0.0/0f2de24d.js">
+<link rel="modulepreload" href="./_npm/d3-brush@3.0.0/65eb105b.js">
+<link rel="modulepreload" href="./_npm/d3-chord@3.0.1/7ef8fb2e.js">
+<link rel="modulepreload" href="./_npm/d3-color@3.1.0/aeb57b94.js">
+<link rel="modulepreload" href="./_npm/d3-contour@4.0.2/1d2aed74.js">
+<link rel="modulepreload" href="./_npm/d3-delaunay@6.0.4/5ced1d52.js">
+<link rel="modulepreload" href="./_npm/d3-dispatch@3.0.1/9ba9c7f3.js">
+<link rel="modulepreload" href="./_npm/d3-drag@3.0.0/4202580c.js">
+<link rel="modulepreload" href="./_npm/d3-ease@3.0.1/cdd7e898.js">
+<link rel="modulepreload" href="./_npm/d3-fetch@3.0.1/b4e2ad9a.js">
+<link rel="modulepreload" href="./_npm/d3-force@3.0.0/5e804d15.js">
+<link rel="modulepreload" href="./_npm/d3-format@3.1.0/86074ef6.js">
+<link rel="modulepreload" href="./_npm/d3-geo@3.1.1/40599fb3.js">
+<link rel="modulepreload" href="./_npm/d3-hierarchy@3.1.2/e49e792c.js">
+<link rel="modulepreload" href="./_npm/d3-interpolate@3.0.1/8d1e5425.js">
+<link rel="modulepreload" href="./_npm/d3-path@3.1.0/20d3f133.js">
+<link rel="modulepreload" href="./_npm/d3-polygon@3.0.1/7553081f.js">
+<link rel="modulepreload" href="./_npm/d3-quadtree@3.0.1/0dfd751c.js">
+<link rel="modulepreload" href="./_npm/d3-random@3.0.1/3c90ee06.js">
+<link rel="modulepreload" href="./_npm/d3-scale@4.0.2/843b6a76.js">
+<link rel="modulepreload" href="./_npm/d3-scale-chromatic@3.1.0/ba24c2e7.js">
+<link rel="modulepreload" href="./_npm/d3-selection@3.0.0/4d94e5b7.js">
+<link rel="modulepreload" href="./_npm/d3-shape@3.2.0/6d3a6726.js">
+<link rel="modulepreload" href="./_npm/d3-time@3.1.0/9f03c579.js">
+<link rel="modulepreload" href="./_npm/d3-time-format@4.1.0/07c9626f.js">
+<link rel="modulepreload" href="./_npm/d3-timer@3.0.1/b58a267d.js">
+<link rel="modulepreload" href="./_npm/d3-transition@3.0.1/004da2ac.js">
+<link rel="modulepreload" href="./_npm/d3-zoom@3.0.0/b5786b3f.js">
+<link rel="modulepreload" href="./_npm/interval-tree-1d@1.0.4/53fe8176.js">
+<link rel="modulepreload" href="./_npm/internmap@2.0.3/e08981d9.js">
+<link rel="modulepreload" href="./_npm/delaunator@5.0.1/02d43215.js">
+<link rel="modulepreload" href="./_npm/binary-search-bounds@2.0.5/cbf6ba23.js">
+<link rel="modulepreload" href="./_npm/robust-predicates@3.0.2/aa00730b.js">
+<script type="module">
+
+import {define} from "./_observablehq/client.2ebf0c42.js";
+import {registerFile} from "./_observablehq/stdlib.73a8ec5a.js";
+
+registerFile("./data/pet_adoption_center.csv", {"name":"./data/pet_adoption_center.csv","mimeType":"text/csv","path":"./_file/data/pet_adoption_center.236b5ca3.csv","lastModified":1750241234000,"size":20478});
+
+define({id: "bb389613", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html.fragment`<link rel="stylesheet" href="./custom-style.css">`
+))
+}});
+
+define({id: "59f1d9cd", inputs: ["FileAttachment"], outputs: ["pets"], body: (FileAttachment) => {
+// Load the dataset
+const pets = FileAttachment("./data/pet_adoption_center.csv").csv({typed: true});
+return {pets};
+}});
+
+define({id: "c9f40948", inputs: ["pets","d3"], outputs: ["adoptedPets","notAdoptedPets","speciesStats","speciesData","ageDistribution","adopterStats"], body: (pets,d3) => {
+// Data processing
+const adoptedPets = pets.filter(d => d.adopted === "True");
+const notAdoptedPets = pets.filter(d => d.adopted === "False");
+
+// Calculate adoption rates by species
+const speciesStats = d3.rollup(
+  pets,
+  v => ({
+    total: v.length,
+    adopted: v.filter(d => d.adopted === "True").length,
+    adoptionRate: (v.filter(d => d.adopted === "True").length / v.length) * 100
+  }),
+  d => d.species
+);
+
+const speciesData = Array.from(speciesStats, ([species, stats]) => ({
+  species,
+  ...stats
+})).sort((a, b) => b.adoptionRate - a.adoptionRate);
+
+// Age distribution analysis
+const ageDistribution = pets.map(d => ({
+  age: d.age_years,
+  species: d.species,
+  adopted: d.adopted
+}));
+
+// Adopter previous pets analysis
+const adopterStats = adoptedPets
+  .filter(d => d.adopter_previous_pets >= 0)
+  .map(d => ({
+    previousPets: d.adopter_previous_pets,
+    species: d.species,
+    adopterAge: d.adopter_age
+  }));
+return {adoptedPets,notAdoptedPets,speciesStats,speciesData,ageDistribution,adopterStats};
+}});
+
+define({id: "48d5dda7", inputs: ["view","Inputs"], outputs: ["selectedMetric"], body: (view,Inputs) => {
+// Create dropdown for interactive filtering
+const selectedMetric = view(Inputs.select(
+  ["Adoption Rate (%)", "Total Count", "Adopted Count"],
+  {value: "Adoption Rate (%)", label: "Display Metric"}
+));
+return {selectedMetric};
+}});
+
+define({id: "a3f56c68", inputs: ["Plot","selectedMetric","speciesData","display"], body: async (Plot,selectedMetric,speciesData,display) => {
+display(await(
+// Bar chart showing adoption rates by species
+Plot.plot({
+  style: {
+    background: "white",
+    fontSize: "14px",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+  },
+  marginLeft: 100,
+  marginRight: 40,
+  marginTop: 40,
+  marginBottom: 50,
+  height: 400,
+  x: {
+    label: selectedMetric + " →",
+    grid: true,
+    labelAnchor: "center"
+  },
+  y: {
+    label: "↑ Species",
+    domain: speciesData.map(d => d.species),
+    labelAnchor: "center"
+  },
+  color: {
+    type: "linear",
+    scheme: "purples",
+    legend: true,
+    label: "Adoption Rate (%)"
+  },
+  marks: [
+    Plot.barX(speciesData, {
+      y: "species",
+      x: selectedMetric === "Adoption Rate (%)" ? "adoptionRate" :
+         selectedMetric === "Total Count" ? "total" : "adopted",
+      fill: "adoptionRate",
+      sort: {y: "-x"},
+      tip: {
+        fontSize: 14,
+        fontFamily: "system-ui"
+      },
+      title: d => `${d.species}\n━━━━━━━━━━━━━━━\nTotal: ${d.total}\nAdopted: ${d.adopted}\nAdoption Rate: ${d.adoptionRate.toFixed(1)}%`,
+      rx: 4
+    }),
+    Plot.ruleX([0], {stroke: "#e2e8f0", strokeWidth: 2})
+  ]
+})
+))
+}});
+
+define({id: "e686f776", inputs: ["view","Inputs","pets"], outputs: ["selectedSpecies"], body: (view,Inputs,pets) => {
+// Create species filter
+const selectedSpecies = view(Inputs.select(
+  ["All", ...new Set(pets.map(d => d.species))],
+  {value: "All", label: "Filter by Species"}
+));
+return {selectedSpecies};
+}});
+
+define({id: "81a1a873", inputs: ["selectedSpecies","ageDistribution"], outputs: ["filteredAgeData"], body: (selectedSpecies,ageDistribution) => {
+// Filter data based on selection
+const filteredAgeData = selectedSpecies === "All"
+  ? ageDistribution
+  : ageDistribution.filter(d => d.species === selectedSpecies);
+return {filteredAgeData};
+}});
+
+define({id: "e24e851c", inputs: ["Plot","filteredAgeData","display"], body: async (Plot,filteredAgeData,display) => {
+display(await(
+// Box plot showing age distribution by adoption status
+Plot.plot({
+  style: {
+    background: "white",
+    fontSize: "14px",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+  },
+  marginLeft: 120,
+  marginRight: 40,
+  marginTop: 40,
+  marginBottom: 50,
+  height: 350,
+  x: {
+    label: "Age (years) →",
+    grid: true,
+    labelAnchor: "center"
+  },
+  y: {
+    label: "↑ Adoption Status",
+    labelAnchor: "center",
+    domain: ["False", "True"],
+    tickFormat: d => d === "True" ? "✓ Adopted" : "✗ Not Adopted"
+  },
+  color: {
+    legend: true,
+    domain: ["True", "False"],
+    range: ["#667eea", "#f59e0b"],
+    label: "Status"
+  },
+  marks: [
+    Plot.boxX(filteredAgeData, {
+      x: "age",
+      y: "adopted",
+      fill: "adopted",
+      stroke: "adopted",
+      strokeWidth: 2,
+      tip: {
+        fontSize: 14
+      }
+    }),
+    Plot.dot(filteredAgeData, {
+      x: "age",
+      y: "adopted",
+      fill: "adopted",
+      r: 2.5,
+      opacity: 0.4,
+      tip: true,
+      title: d => `Age: ${d.age} years\nSpecies: ${d.species}\nAdopted: ${d.adopted === "True" ? "Yes" : "No"}`
+    })
+  ]
+})
+))
+}});
+
+define({id: "5af1deb5", inputs: ["Plot","adopterStats","display"], body: async (Plot,adopterStats,display) => {
+display(await(
+// Scatter plot with adopter age vs previous pets
+Plot.plot({
+  style: {
+    background: "white",
+    fontSize: "14px",
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif"
+  },
+  marginLeft: 60,
+  marginRight: 40,
+  marginTop: 40,
+  marginBottom: 60,
+  height: 450,
+  width: 800,
+  x: {
+    label: "Number of Previous Pets →",
+    grid: true,
+    labelAnchor: "center",
+    nice: true
+  },
+  y: {
+    label: "↑ Adopter Age (years)",
+    grid: true,
+    labelAnchor: "center",
+    nice: true
+  },
+  color: {
+    legend: true,
+    label: "Pet Species",
+    scheme: "tableau10"
+  },
+  marks: [
+    Plot.dot(adopterStats, {
+      x: "previousPets",
+      y: "adopterAge",
+      fill: "species",
+      stroke: "white",
+      strokeWidth: 1.5,
+      r: 6,
+      opacity: 0.8,
+      tip: {
+        fontSize: 14
+      },
+      title: d => `🐾 Species: ${d.species}\n━━━━━━━━━━━━━━━\nPrevious Pets: ${d.previousPets}\nAdopter Age: ${d.adopterAge} years`
+    }),
+    Plot.frame({stroke: "#e2e8f0", strokeWidth: 2})
+  ]
+})
+))
+}});
+
+define({id: "42084ee8", inputs: ["d3","adopterStats"], outputs: ["summaryStats","summaryData"], body: (d3,adopterStats) => {
+// Summary statistics table
+const summaryStats = d3.rollup(
+  adopterStats,
+  v => ({
+    count: v.length,
+    avgPreviousPets: d3.mean(v, d => d.previousPets).toFixed(1),
+    avgAdopterAge: d3.mean(v, d => d.adopterAge).toFixed(1)
+  }),
+  d => d.species
+);
+
+const summaryData = Array.from(summaryStats, ([species, stats]) => ({
+  Species: species,
+  "Adoptions": stats.count,
+  "Avg Previous Pets": stats.avgPreviousPets,
+  "Avg Adopter Age": stats.avgAdopterAge
+})).sort((a, b) => b.Adoptions - a.Adoptions);
+return {summaryStats,summaryData};
+}});
+
+define({id: "7dec0006", inputs: ["html","Inputs","summaryData","display"], body: async (html,Inputs,summaryData,display) => {
+display(await(
+html`<div style="overflow-x: auto; margin: 1.5rem 0;">
+  ${Inputs.table(summaryData, {
+    header: {
+      Species: "Pet Species",
+      Adoptions: "Number of Adoptions",
+      "Avg Previous Pets": "Avg Previous Pets",
+      "Avg Adopter Age": "Avg Adopter Age (years)"
+    },
+    width: {
+      Species: 150,
+      Adoptions: 150,
+      "Avg Previous Pets": 150,
+      "Avg Adopter Age": 180
+    }
+  })}
+</div>`
+))
+}});
+
+</script>
+</head>
+<body>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#theme">Theme</a></li>
+<li class="observablehq-secondary-link"><a href="#about-the-dataset">About the Dataset</a></li>
+<li class="observablehq-secondary-link"><a href="#question-1-which-pet-species-have-the-highest-adoption-rates">📊 Question 1: Which pet species have the highest adoption rates?</a></li>
+<li class="observablehq-secondary-link"><a href="#question-2-how-does-pet-age-affect-adoption-likelihood">📈 Question 2: How does pet age affect adoption likelihood?</a></li>
+<li class="observablehq-secondary-link"><a href="#question-3-what-is-the-relationship-between-adopter-experience-and-pet-type">🎯 Question 3: What is the relationship between adopter experience and pet type?</a></li>
+<li class="observablehq-secondary-link"><a href="#design-decisions-and-insights">Design Decisions and Insights</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:bb389613:--></div>
+<h1 id="pet-adoption-center-exploratory-data-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#pet-adoption-center-exploratory-data-analysis">Pet Adoption Center Exploratory Data Analysis</a></h1>
+<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);">
+  <p style="color: white; margin: 0; font-size: 1.1rem;"><strong style="color: white;">Name:</strong> Harsha Kanaparthi</p>
+  <p style="color: white; margin: 0.5rem 0 0 0; font-size: 1.1rem;"><strong style="color: white;">Student ID:</strong> 801421103</p>
+</div>
+<hr>
+<h2 id="theme" tabindex="-1"><a class="observablehq-header-anchor" href="#theme">Theme</a></h2>
+<p>This dashboard explores pet adoption patterns and trends at a pet adoption center, analyzing factors that influence adoption success rates and understanding the characteristics of both pets and adopters.</p>
+<hr>
+<h2 id="about-the-dataset" tabindex="-1"><a class="observablehq-header-anchor" href="#about-the-dataset">About the Dataset</a></h2>
+<p>This dataset contains information about pets available for adoption at a pet adoption center. The data includes:</p>
+<ul>
+<li><strong>Source:</strong> Pet Adoption Center records</li>
+<li><strong>Scope:</strong> Comprehensive records of pets (dogs, cats, birds, rabbits, hamsters) and their adoption status</li>
+<li><strong>Time Range:</strong> 2023-2025</li>
+<li><strong>Key Fields:</strong> Pet characteristics (species, breed, age, gender, color), arrival and adoption dates, adopter demographics (name, age, city, previous pet ownership)</li>
+<li><strong>Data Cleaning:</strong> The dataset includes both adopted and non-adopted pets. Adopted pets have complete adopter information, while non-adopted pets have N/A values for adopter fields.</li>
+</ul>
+<hr>
+<div class="observablehq observablehq--block"><!--:59f1d9cd:--></div>
+<div class="observablehq observablehq--block"><!--:c9f40948:--></div>
+<hr>
+<div style="background: #f0f4ff; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #667eea; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); border: 1px solid #e0e7ff;">
+<h2 id="question-1-which-pet-species-have-the-highest-adoption-rates" tabindex="-1"><a class="observablehq-header-anchor" href="#question-1-which-pet-species-have-the-highest-adoption-rates">📊 Question 1: Which pet species have the highest adoption rates?</a></h2>
+<p style="color: #1a202c; font-size: 1.05rem; line-height: 1.7; font-weight: 500;">This visualization shows the adoption success rate across different species to identify which types of pets are most likely to find homes.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:48d5dda7:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:a3f56c68:--></div>
+<hr>
+<div style="background: #f0f4ff; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #667eea; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); border: 1px solid #e0e7ff;">
+<h2 id="question-2-how-does-pet-age-affect-adoption-likelihood" tabindex="-1"><a class="observablehq-header-anchor" href="#question-2-how-does-pet-age-affect-adoption-likelihood">📈 Question 2: How does pet age affect adoption likelihood?</a></h2>
+<p style="color: #1a202c; font-size: 1.05rem; line-height: 1.7; font-weight: 500;">This visualization explores the relationship between pet age and adoption success across different species.</p>
+</div>
+<div class="observablehq observablehq--block"><!--:e686f776:--></div>
+<div class="observablehq observablehq--block"><!--:81a1a873:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e24e851c:--></div>
+<hr>
+<div style="background: #f0f4ff; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 5px solid #667eea; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); border: 1px solid #e0e7ff;">
+<h2 id="question-3-what-is-the-relationship-between-adopter-experience-and-pet-type" tabindex="-1"><a class="observablehq-header-anchor" href="#question-3-what-is-the-relationship-between-adopter-experience-and-pet-type">🎯 Question 3: What is the relationship between adopter experience and pet type?</a></h2>
+<p style="color: #1a202c; font-size: 1.05rem; line-height: 1.7; font-weight: 500;">This scatter plot examines whether adopters with previous pet ownership experience tend to adopt certain types of pets.</p>
+</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:5af1deb5:--></div>
+<h3 id="summary-statistics-by-species" tabindex="-1"><a class="observablehq-header-anchor" href="#summary-statistics-by-species">📋 Summary Statistics by Species</a></h3>
+<div class="observablehq observablehq--block"><!--:42084ee8:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:7dec0006:--></div>
+<hr>
+<h2 id="design-decisions-and-insights" tabindex="-1"><a class="observablehq-header-anchor" href="#design-decisions-and-insights">Design Decisions and Insights</a></h2>
+<h3 id="design-rationale" tabindex="-1"><a class="observablehq-header-anchor" href="#design-rationale">Design Rationale</a></h3>
+<ul>
+<li>
+<p><strong>Interactive Filtering:</strong> Added dropdown selectors to allow users to explore different metrics (adoption rate, total count) and filter by species, making the analysis more flexible and comprehensive.</p>
+</li>
+<li>
+<p><strong>Color Encoding:</strong> Used a blue gradient for adoption rates to show performance intensity, and contrasting colors (green for adopted, red for not adopted) to clearly distinguish adoption status in the age distribution chart.</p>
+</li>
+<li>
+<p><strong>Multiple Chart Types:</strong> Combined bar charts, box plots, and scatter plots to address different analytical questions - categorical comparisons, distribution analysis, and relationship exploration.</p>
+</li>
+<li>
+<p><strong>Tooltips:</strong> Implemented detailed tooltips on all charts to provide specific data points on hover, enhancing the interactive exploration experience.</p>
+</li>
+</ul>
+<h3 id="key-observations" tabindex="-1"><a class="observablehq-header-anchor" href="#key-observations">Key Observations</a></h3>
+<ul>
+<li>
+<p><strong>Species Adoption Patterns:</strong> The adoption rates vary significantly across species, with some species showing notably higher success rates than others. This could inform the center about which species need more marketing or special programs.</p>
+</li>
+<li>
+<p><strong>Age Factor:</strong> The box plot reveals that age distribution differs between adopted and non-adopted pets, suggesting that certain age ranges are more desirable to adopters. Younger pets generally show higher adoption rates.</p>
+</li>
+<li>
+<p><strong>Adopter Experience:</strong> There's a diverse range of adopter experience levels across all species. Interestingly, both first-time and experienced pet owners adopt various types of pets, though certain species may attract more experienced adopters.</p>
+</li>
+<li>
+<p><strong>Time Insights:</strong> The data spans multiple years (2023-2025), allowing for temporal analysis of adoption trends and seasonal patterns if needed.</p>
+</li>
+<li>
+<p><strong>Demographics:</strong> Adopter age ranges widely, indicating that pet adoption appeals to diverse age groups. The relationship between adopter demographics and pet preferences could guide targeted outreach efforts.</p>
+</li>
+</ul>
+<hr>
+<p><em>Dashboard created with Observable Framework and Observable Plot</em></p>
+</main>
+<footer id="observablehq-footer">
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-10-27T23:10:26">Oct 27, 2025</a>.</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "shivaani-assignment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "observable preview",
+    "build": "observable build",
+    "deploy": "observable deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@observablehq/framework": "^1.13.3",
+    "d3": "^7.9.0"
+  }
+}
